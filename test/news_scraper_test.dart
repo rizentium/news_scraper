@@ -1,6 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:news_scraper/interfaces/resource.dart';
 import 'package:news_scraper/news_scraper.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('goriau.com', () async {
