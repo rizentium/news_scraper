@@ -29,6 +29,7 @@
 .pub-cache/
 .pub/
 build/
+bin/
 
 # Android related
 **/android/**/gradle-wrapper.jar
