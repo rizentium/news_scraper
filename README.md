@@ -1,4 +1,5 @@
 # news_scraper
+![Dart CI](https://github.com/rizentium/news_scraper/workflows/Dart%20CI/badge.svg)
 
 A new Flutter package project.
 
