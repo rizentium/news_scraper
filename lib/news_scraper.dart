@@ -17,4 +17,15 @@ class NewsScraper {
         return null;
     }
   }
+
+  /// Ex: goriau
+  Future<NewsInterface> getArticle({NewsSource source, String url}) async {
+    switch (source) {
+      case NewsSource.goriau:
+        return GoRiauResource().getArticle(url);
+        break;
+      default:
+        return null;
+    }
+  }
 }
