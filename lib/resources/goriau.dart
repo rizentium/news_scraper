@@ -37,7 +37,9 @@ class GoRiauResource {
         description: '',
         content: document.getElementById('page1').innerHtml,
         url: url,
-        writer: document.querySelector('.post-author > span').text,
+        writer: document.querySelector('.post-author > span') != null
+            ? document.querySelector('.post-author > span').text
+            : '',
         publishedAt: document.querySelector('.post-date').text,
         publisher: 'goriau.com');
 

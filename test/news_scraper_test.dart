@@ -10,7 +10,7 @@ void main() {
     // check the data length
     expect(goriau.length, 19);
 
-    goriau.forEach((element) {
+    goriau.forEach((element) async {
       // is the title still valid
       expect(element.title.length, greaterThanOrEqualTo(5));
       // is the thumbnail still valid
@@ -19,6 +19,11 @@ void main() {
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
       expect(element.publishedAt.length, greaterThanOrEqualTo(10));
+
+      var news = await newsScraper.getArticle(
+          source: NewsSource.goriau, url: element.url);
+
+      expect(news.title, greaterThanOrEqualTo(5));
     });
   });
 }
