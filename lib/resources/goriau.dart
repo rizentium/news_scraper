@@ -7,22 +7,28 @@ class GoRiauResource {
   var client = Client();
 
   Future<List<NewsInterface>> fetchData() async {
-    Response response = await client.get('$_url/berita/peristiwa.html');
+    try {
+      Response response = await client.get('$_url/berita/peristiwa.html');
 
-    var document = parse(response.body);
-    List news = document
-        .querySelectorAll('.post')
-        .map((e) => new NewsInterface(
-            id: (_url + e.querySelector('.post-thumb > a').attributes['href']),
-            title: e.querySelector('.post-title > h2 > a').text,
-            thumbnail:
-                e.querySelector('.post-thumb > a > img').attributes['data-src'],
-            description: '',
-            url: _url + e.querySelector('.post-thumb > a').attributes['href'],
-            publishedAt: e.querySelector('.post-attr').text,
-            publisher: 'goriau.com'))
-        .toList();
-    return news;
+      var document = parse(response.body);
+      List news = document
+          .querySelectorAll('.post')
+          .map((e) => new NewsInterface(
+              id: (_url +
+                  e.querySelector('.post-thumb > a').attributes['href']),
+              title: e.querySelector('.post-title > h2 > a').text,
+              thumbnail: e
+                  .querySelector('.post-thumb > a > img')
+                  .attributes['data-src'],
+              description: '',
+              url: _url + e.querySelector('.post-thumb > a').attributes['href'],
+              publishedAt: e.querySelector('.post-attr').text,
+              publisher: 'goriau.com'))
+          .toList();
+      return news;
+    } catch (err) {
+      return [];
+    }
   }
 
   Future<NewsInterface> getArticle(String url) async {
