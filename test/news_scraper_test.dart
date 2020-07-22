@@ -18,8 +18,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(element.publishedAt,
-          DateTime.parse(element.publishedAt.toIso8601String()));
+      expect(element.publishedAt.length, greaterThanOrEqualTo(10));
     });
   });
 }
