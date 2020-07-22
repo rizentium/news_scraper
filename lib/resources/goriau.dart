@@ -1,17 +1,14 @@
-import 'dart:convert';
-
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:news_scraper/interfaces/news-source.dart';
-import 'package:news_scraper/services/waktu.dart';
 
 class GoRiauResource {
-  String _url = 'https://www.goriau.com/berita/peristiwa.html';
+  String _url = 'https://www.goriau.com';
 
   Future<List<NewsInterface>> fetchData() async {
     try {
       var client = Client();
-      Response response = await client.get(_url);
+      Response response = await client.get('$_url/berita/peristiwa.html');
 
       var document = parse(response.body);
       List news = document
@@ -39,6 +36,7 @@ class GoRiauResource {
       var client = Client();
       Response response = await client.get(url);
       var document = parse(response.body);
+
       var data = new NewsInterface(
           id: url,
           title: document.querySelector('.post-title > h1').text,
