@@ -23,6 +23,8 @@ class OkezoneMuslimResource {
               url: e.querySelector('.gabreaking').attributes['href'],
               publishedAt: e.querySelector('.mh-clock').text,
               publisher: 'muslim.okezone.com'))
+          .toList()
+          .where((data) => data.id.contains('?page=1') != true)
           .toList();
       return news;
     } catch (err) {
