@@ -39,17 +39,19 @@ class OkezoneMuslimResource {
 
     var data = new NewsInterface(
         id: url,
-        title: document.querySelector('.post-title > h1').text,
-        thumbnail:
-            document.querySelector('.post-thumb > img').attributes['src'],
+        title: document.querySelector('.title > h1').text,
+        thumbnail: document.getElementById('imgCheck').attributes['src'],
         description: '',
-        content: document.getElementById('page1').innerHtml,
+        content: document.getElementById('contentx').innerHtml,
         url: url,
-        writer: document.querySelector('.post-author > span') != null
-            ? document.querySelector('.post-author > span').text
-            : '',
-        publishedAt: document.querySelector('.post-date').text,
-        publisher: 'goriau.com');
+        writer: document
+            .querySelector('.namerep')
+            .nodes[0]
+            .text
+            .trim()
+            .replaceAll(RegExp(r'[^a-zA-Z ]'), ''),
+        publishedAt: document.querySelector('.namerep > b').text,
+        publisher: 'muslim.okezone.com');
 
     return data;
   }
