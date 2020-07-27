@@ -1,5 +1,3 @@
-import 'package:news_scraper/interfaces/resource.dart';
-
 class NewsInterface {
   final String id;
   final String title;

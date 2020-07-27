@@ -1,1 +1,1 @@
-enum NewsSource { goriau }
+enum NewsSource { goriau, okezone_muslim }
