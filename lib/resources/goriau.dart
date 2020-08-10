@@ -43,8 +43,9 @@ class GoRiauResource {
     var data = new NewsInterface(
         id: url,
         title: document.querySelector('.post-title > h1').text,
-        thumbnail:
-            document.querySelector('.post-thumb > img').attributes['src'],
+        thumbnail: document.querySelector('.post-thumb > img') != null
+            ? document.querySelector('.post-thumb > img').attributes['src']
+            : '',
         description: '',
         content: document.getElementById('page1').innerHtml,
         url: url,
