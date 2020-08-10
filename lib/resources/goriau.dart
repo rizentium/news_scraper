@@ -11,22 +11,27 @@ class GoRiauResource {
       Response response = await client.get('$_url/berita/peristiwa.html');
 
       var document = parse(response.body);
+
       List news = document
           .querySelectorAll('.post')
           .map((e) => new NewsInterface(
               id: (_url +
-                  e.querySelector('.post-thumb > a').attributes['href']),
+                  e.querySelector('.post-title h2 > a').attributes['href']),
               title: e.querySelector('.post-title > h2 > a').text,
-              thumbnail: e
-                  .querySelector('.post-thumb > a > img')
-                  .attributes['data-src'],
+              thumbnail: e.querySelector('.post-thumb > a > img') != null
+                  ? e
+                      .querySelector('.post-thumb > a > img')
+                      .attributes['data-src']
+                  : '',
               description: '',
-              url: _url + e.querySelector('.post-thumb > a').attributes['href'],
+              url: (_url +
+                  e.querySelector('.post-title h2 > a').attributes['href']),
               publishedAt: e.querySelector('.post-attr').text,
               publisher: 'goriau.com'))
           .toList();
       return news;
     } catch (err) {
+      print(err);
       return [];
     }
   }
