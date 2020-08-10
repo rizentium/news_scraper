@@ -14,7 +14,11 @@ void main() {
       // is the title still valid
       expect(element.title.length, greaterThanOrEqualTo(5));
       // is the thumbnail still valid
-      expect(Uri.parse(element.thumbnail).isAbsolute, true);
+      expect(
+          element.thumbnail != ''
+              ? Uri.parse(element.thumbnail).isAbsolute
+              : true,
+          true);
       // is the url still valid
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
