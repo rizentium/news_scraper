@@ -38,8 +38,7 @@ class GoRiauResource {
 
       return news;
     } catch (err) {
-      print(err);
-      return [];
+      return err;
     }
   }
 
