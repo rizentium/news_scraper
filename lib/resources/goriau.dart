@@ -25,7 +25,7 @@ class GoRiauResource {
 
         return NewsInterface(
             id: f['link']['\$'],
-            title: f['title']['__cdata'],
+            title: f['title']['__cdata'].replaceAll('\\', ''),
             thumbnail: description.querySelector('img').attributes['src'],
             description: description.children.first.text
                 .replaceAll('\\t', '')
