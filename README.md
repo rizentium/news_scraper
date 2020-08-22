@@ -1,6 +1,6 @@
 # news_scraper
 
-![Dart CI](https://github.com/rizentium/news_scraper/workflows/Dart%20CI/badge.svg) ![Travis CI](https://travis-ci.com/rizentium/news_scraper.svg?token=yM9ZVGcTF3GLzN1Z2CGh&branch=master)
+![Travis CI](https://travis-ci.com/rizentium/news_scraper.svg?token=yM9ZVGcTF3GLzN1Z2CGh&branch=master)
 
 A new Flutter package project.
 
