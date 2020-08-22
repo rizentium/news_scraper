@@ -8,7 +8,7 @@ void main() {
 
     var goriau = await newsScraper.getListFromSource(source: NewsSource.goriau);
     // check the data length
-    expect(goriau.length, 19);
+    expect(goriau.length, 15);
 
     goriau.forEach((element) async {
       // is the title still valid
