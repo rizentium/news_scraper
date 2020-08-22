@@ -12,7 +12,7 @@ class GoRiauResource {
   Future<List<NewsInterface>> fetchData() async {
     try {
       final Xml2Json xml2Json = Xml2Json();
-      var response = await client.get('https://www.goriau.com/rss/berita.xml');
+      var response = await client.get('$_url/rss/berita.xml');
 
       var content = response.body;
       xml2Json.parse(content);
