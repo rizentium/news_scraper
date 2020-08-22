@@ -15,6 +15,15 @@ dependencies:
   # A composable, Future-based library for making HTTP requests.
   http: ^0.12.2
 
+  # An XML to JSON conversion package.
+  # 
+  # This package allows the parsing of XML strings and the transformation of
+  # the resulting parse tree into the following XML JSON conventions:
+  # 1. Parker
+  # 2. Badgerfish
+  # 3. Google Data(GData).
+  xml2json: ^4.3.0
+
 dev_dependencies:
   test:
 

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 import 'package:news_scraper/interfaces/news-source.dart';
+import 'package:xml2json/xml2json.dart';
 
 class GoRiauResource {
   String _url = 'https://www.goriau.com';
@@ -8,27 +11,31 @@ class GoRiauResource {
 
   Future<List<NewsInterface>> fetchData() async {
     try {
-      Response response = await client.get('$_url/berita/peristiwa.html');
+      final Xml2Json xml2Json = Xml2Json();
+      var response = await client.get('https://www.goriau.com/rss/berita.xml');
 
-      var document = parse(response.body);
+      var content = response.body;
+      xml2Json.parse(content);
 
-      List news = document
-          .querySelectorAll('.post')
-          .map((e) => new NewsInterface(
-              id: (_url +
-                  e.querySelector('.post-title h2 > a').attributes['href']),
-              title: e.querySelector('.post-title > h2 > a').text,
-              thumbnail: e.querySelector('.post-thumb > a > img') != null
-                  ? e
-                      .querySelector('.post-thumb > a > img')
-                      .attributes['data-src']
-                  : '',
-              description: '',
-              url: (_url +
-                  e.querySelector('.post-title h2 > a').attributes['href']),
-              publishedAt: e.querySelector('.post-attr').text,
-              publisher: 'goriau.com'))
-          .toList();
+      var jsonString = xml2Json.toBadgerfish();
+      List<dynamic> result = jsonDecode(jsonString)['rss']['channel']['item'];
+
+      List news = result.map((f) {
+        var description = parse(f['description']['__cdata']);
+
+        return NewsInterface(
+            id: f['link']['\$'],
+            title: f['title']['\$'],
+            thumbnail: description.querySelector('img').attributes['src'],
+            description: description.children.first.text
+                .replaceAll('\\t', '')
+                .replaceAll('\\r', '')
+                .replaceAll('\\n', ''),
+            url: f['link']['\$'],
+            publishedAt: f['pubDate']['\$'],
+            publisher: 'goriau.com');
+      }).toList();
+
       return news;
     } catch (err) {
       print(err);
