@@ -1,6 +1,6 @@
 # news_scraper
 
-![Travis CI](https://travis-ci.com/rizentium/news_scraper.svg?token=yM9ZVGcTF3GLzN1Z2CGh&branch=master) ![Coverage](https://raw.githubusercontent.com/rizentium/news_scraper/master/coverage_badge.svg)
+![Travis CI](https://travis-ci.com/rizentium/news_scraper.svg?token=yM9ZVGcTF3GLzN1Z2CGh&branch=master) ![Coverage](https://raw.githubusercontent.com/rizentium/news_scraper/master/coverage_badge.svg?token=AKUFCPSQGDUMA4SKUZ5SQT27IKFTQ)
 
 A new Flutter package project.
 

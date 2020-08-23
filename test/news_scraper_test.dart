@@ -22,7 +22,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(element.publishedAt.length, greaterThanOrEqualTo(10));
+      expect(element.publishedAt.compareTo(DateTime.now()) < 0, true);
 
       var news = await newsScraper.getArticle(
           source: NewsSource.goriau, url: element.url);
