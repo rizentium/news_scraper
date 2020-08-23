@@ -1,6 +1,9 @@
 # news_scraper
 
-[![Build Status](https://travis-ci.com/rizentium/news_scraper.svg?branch=master)](https://travis-ci.com/rizentium/news_scraper) [![Coverage Status](https://coveralls.io/repos/github/rizentium/news_scraper/badge.svg?branch=master)](https://coveralls.io/github/rizentium/news_scraper?branch=master)
+[![GitHub license](https://img.shields.io/github/license/rizentium/news_scraper)](https://github.com/rizentium/news_scraper/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/rizentium/news_scraper.svg?branch=master)](https://travis-ci.com/rizentium/news_scraper)
+[![Coverage Status](https://coveralls.io/repos/github/rizentium/news_scraper/badge.svg?branch=master)](https://coveralls.io/github/rizentium/news_scraper?branch=master)
+[![GitHub issues](https://img.shields.io/github/issues/rizentium/news_scraper)](https://github.com/rizentium/news_scraper/issues)
 
 A new Flutter package project.
 
