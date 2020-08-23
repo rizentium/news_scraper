@@ -59,7 +59,7 @@ void main() {
       expect(element.publishedAt.millisecondsSinceEpoch > 0, true);
 
       var news = await newsScraper.getArticle(
-          source: NewsSource.goriau, url: element.url);
+          source: NewsSource.haluanriau, url: element.url);
 
       expect(news.title.length, greaterThanOrEqualTo(5));
       expect(news.thumbnail != '' ? Uri.parse(news.thumbnail).isAbsolute : true,
