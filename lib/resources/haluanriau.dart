@@ -32,10 +32,7 @@ class HaluanRiauResource {
         );
       }).toList();
 
-      news.forEach((f) {
-        print(f.toMap());
-      });
-      return [];
+      return news;
     } catch (err) {
       return [];
     }
