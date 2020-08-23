@@ -21,7 +21,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(element.publishedAt.compareTo(DateTime.now()) < 0, true);
+      expect(element.publishedAt.millisecondsSinceEpoch > 0, true);
 
       var news = await newsScraper.getArticle(
           source: NewsSource.goriau, url: element.url);
@@ -33,7 +33,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(news.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(news.publishedAt.compareTo(DateTime.now()) < 0, true);
+      expect(news.publishedAt.millisecondsSinceEpoch > 0, true);
     });
   });
   test('riau.haluan.co', () async {
@@ -56,7 +56,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(element.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(element.publishedAt.compareTo(DateTime.now()) < 0, true);
+      expect(element.publishedAt.millisecondsSinceEpoch > 0, true);
 
       var news = await newsScraper.getArticle(
           source: NewsSource.goriau, url: element.url);
@@ -67,7 +67,7 @@ void main() {
       // is the url still valid
       expect(Uri.parse(news.url).isAbsolute, true);
       // is the publishedAt still valid
-      expect(news.publishedAt.compareTo(DateTime.now()) < 0, true);
+      expect(news.publishedAt.millisecondsSinceEpoch > 0, true);
     });
   });
 }

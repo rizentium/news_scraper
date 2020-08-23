@@ -4,3 +4,12 @@ dart:
 - stable
 dart_task:
 - test: --platform vm
+- dartfmt
+
+
+before_script:
+  - gem install coveralls-lcov
+script:
+  - pub run test_coverage
+after_success:
+  - coveralls-lcov coverage/lcov.info
