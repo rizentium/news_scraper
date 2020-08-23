@@ -23,6 +23,11 @@ dependencies:
   # 2. Badgerfish
   # 3. Google Data(GData).
   xml2json: ^4.3.0
+  
+  # This package provides internationalization and localization facilities,
+  # including message translation, plurals and genders, date/number formatting
+  # and parsing, and bidirectional text.
+  intl: ^0.16.1
 
 dev_dependencies:
   test:

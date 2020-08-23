@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:news_scraper/interfaces/news-source.dart';
+import 'package:news_scraper/services/waktu.dart';
 import 'package:xml2json/xml2json.dart';
 
 class GoRiauResource {
   String _url = 'https://www.goriau.com';
   var client = Client();
+  WaktuService waktu = new WaktuService();
 
   Future<List<NewsInterface>> fetchData() async {
     try {
@@ -32,13 +35,14 @@ class GoRiauResource {
                 .replaceAll('\\r', '')
                 .replaceAll('\\n', ''),
             url: f['link']['\$'],
-            publishedAt: f['pubDate']['\$'],
+            publishedAt: DateFormat('EEE, dd MMM yyyy HH:mm:ss Z')
+                .parse(f['pubDate']['\$']),
             publisher: 'goriau.com');
       }).toList();
 
       return news;
     } catch (err) {
-      return err;
+      return [];
     }
   }
 
@@ -58,7 +62,8 @@ class GoRiauResource {
         writer: document.querySelector('.post-author > span') != null
             ? document.querySelector('.post-author > span').text
             : '',
-        publishedAt: document.querySelector('.post-date').text,
+        publishedAt: DateFormat('EEEE, dd MMMM yyyy HH:mm Z')
+            .parse(waktu.convert(document.querySelector('.post-date').text)),
         publisher: 'goriau.com');
 
     return data;

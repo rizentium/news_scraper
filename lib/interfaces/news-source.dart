@@ -7,7 +7,7 @@ class NewsInterface {
   final String url;
   final String writer;
   final String publisher;
-  final String publishedAt;
+  final DateTime publishedAt;
 
   NewsInterface(
       {this.id,
