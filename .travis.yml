@@ -3,4 +3,14 @@ dart:
 # Install the latest stable release
 - stable
 dart_task:
-- test: --platform vm
+- test: string
+  dartanalyzer: string
+  dartfmt: true
+with_content_shell: true
+before_script:
+  - gem install coveralls-lcov
+after_success:
+  - coveralls-lcov coverage/lcov.info
+cache:
+  directories:
+    - $HOME/.pub-cache
