@@ -1,6 +1,5 @@
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
 import 'package:news_scraper/interfaces/news-source.dart';
 import 'package:news_scraper/services/waktu.dart';
 
@@ -41,22 +40,25 @@ class HaluanRiauResource {
   Future<NewsInterface> getArticle(String url) async {
     Response response = await client.get(url);
     var document = parse(response.body);
+    var content = document.querySelector('.entry-content-single').children;
+    content.removeRange(content.length - 4, content.length);
 
     var data = new NewsInterface(
-        id: url,
-        title: document.querySelector('.post-title > h1').text,
-        thumbnail: document.querySelector('.post-thumb > img') != null
-            ? document.querySelector('.post-thumb > img').attributes['src']
-            : '',
-        description: '',
-        content: document.getElementById('page1').innerHtml,
-        url: url,
-        writer: document.querySelector('.post-author > span') != null
-            ? document.querySelector('.post-author > span').text
-            : '',
-        publishedAt: DateFormat('EEEE, dd MMMM yyyy HH:mm Z')
-            .parse(waktu.convert(document.querySelector('.post-date').text)),
-        publisher: 'goriau.com');
+      id: url,
+      title: document.querySelector('.entry-title').text.trim(),
+      thumbnail: document.querySelector('.single-thumbnail > img') != null
+          ? document.querySelector('.single-thumbnail > img').attributes['src']
+          : '',
+      description: '',
+      content: content.map((f) => f.outerHtml).toList().join(),
+      url: url,
+      writer: document.querySelector('.entry-author') != null
+          ? document.querySelector('.entry-author').text
+          : '',
+      publishedAt: DateTime.parse(
+          document.querySelector('.entry-date').attributes['datetime']),
+      publisher: 'riau.haluan.co',
+    );
 
     return data;
   }
