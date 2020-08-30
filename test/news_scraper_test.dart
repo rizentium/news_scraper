@@ -14,7 +14,7 @@ void main() {
       expect(element.title.length, greaterThanOrEqualTo(5));
       // is the thumbnail still valid
       expect(
-          element.thumbnail != ''
+          element.thumbnail != null
               ? Uri.parse(element.thumbnail).isAbsolute
               : true,
           true);

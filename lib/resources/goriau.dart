@@ -23,17 +23,20 @@ class GoRiauResource {
       var jsonString = xml2Json.toBadgerfish();
       List<dynamic> result = jsonDecode(jsonString)['rss']['channel']['item'];
 
-      List news = result.map((f) {
+      List<NewsInterface> news = result.map((f) {
         var description = parse(f['description']['__cdata']);
+        var img = description != null ? description.querySelector('img') : null;
 
         return NewsInterface(
-            id: f['link']['\$'],
-            title: f['title']['__cdata'].replaceAll('\\', ''),
-            thumbnail: description.querySelector('img').attributes['src'],
-            description: description.children.first.text
-                .replaceAll('\\t', '')
-                .replaceAll('\\r', '')
-                .replaceAll('\\n', ''),
+            id: f['guid']['\$'],
+            title: f['title']['__cdata'].replaceAll('\\', '').toString().trim(),
+            thumbnail: img != null ? img.attributes['src'] : null,
+            description: description != null
+                ? description.children.first.text
+                    .replaceAll('\\t', '')
+                    .replaceAll('\\r', '')
+                    .replaceAll('\\n', '')
+                : null,
             url: f['link']['\$'],
             publishedAt: DateFormat('EEE, dd MMM yyyy HH:mm:ss Z')
                 .parse(f['pubDate']['\$']),
