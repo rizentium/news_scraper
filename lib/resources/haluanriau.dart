@@ -33,7 +33,7 @@ class HaluanRiauResource {
 
       return news;
     } catch (err) {
-      return err;
+      throw err;
     }
   }
 
