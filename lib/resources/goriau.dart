@@ -15,7 +15,7 @@ class GoRiauResource {
   Future<List<NewsInterface>> fetchData() async {
     try {
       final Xml2Json xml2Json = Xml2Json();
-      var response = await client.get('$_url/rss/berita.xml');
+      var response = await client.get(Uri.parse('$_url/rss/berita.xml'));
 
       var content = response.body;
       xml2Json.parse(content);
@@ -50,7 +50,7 @@ class GoRiauResource {
   }
 
   Future<NewsInterface> getArticle(String url) async {
-    Response response = await client.get(url);
+    Response response = await client.get(Uri.parse(url));
     var document = parse(response.body);
 
     var data = new NewsInterface(

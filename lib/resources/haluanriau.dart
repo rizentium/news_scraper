@@ -11,7 +11,7 @@ class HaluanRiauResource {
   Future<List<NewsInterface>> fetchData() async {
     try {
       Response response =
-          await this.client.get('$_url/category/provinsi-riau/');
+          await this.client.get(Uri.parse('$_url/category/provinsi-riau/'));
       var document = parse(response.body);
 
       List<NewsInterface> news = document.querySelectorAll('article').map((f) {
@@ -38,7 +38,7 @@ class HaluanRiauResource {
   }
 
   Future<NewsInterface> getArticle(String url) async {
-    Response response = await client.get(url);
+    Response response = await client.get(Uri.parse(url));
     var document = parse(response.body);
     var content = document.querySelector('.entry-content-single').children;
     content.removeRange(content.length - 4, content.length);
