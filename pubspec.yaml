@@ -9,10 +9,10 @@ environment:
 dependencies:
 
   # This is a pure Dart HTML5 parser. It's a port of html5lib from Python.
-  html: ^0.15.0
+  html: ^0.14.0+3
 
   # A composable, Future-based library for making HTTP requests.
-  http: ^0.13.4
+  http: ^0.12.2
 
   # An XML to JSON conversion package.
   # 
@@ -21,12 +21,12 @@ dependencies:
   # 1. Parker
   # 2. Badgerfish
   # 3. Google Data(GData).
-  xml2json: ^5.3.2
+  xml2json: ^4.4.0
   
   # This package provides internationalization and localization facilities,
   # including message translation, plurals and genders, date/number formatting
   # and parsing, and bidirectional text.
-  intl: ^0.17.0
+  intl: ^0.16.1
 
 dev_dependencies:
   test: ^1.19.5
